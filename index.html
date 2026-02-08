@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRDT - Financial Preparation for Your Relocation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1a2332 100%);
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 50px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #4db8a8;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            color: #f8fafc;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        label {
+            position: absolute;
+            top: 8px;
+            left: 18px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            pointer-events: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 32px 18px 12px 18px;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: #f8fafc;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4db8a8;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(77, 184, 168, 0.1);
+        }
+
+        input::placeholder {
+            color: #64748b;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #4db8a8;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            background: #3da193;
+            box-shadow: 0 10px 25px -5px rgba(77, 184, 168, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            color: #86efac;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            .logo {
+                font-size: 48px;
+                letter-spacing: 6px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .cta-section h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">CRDT</div>
+        
+        <div class="header">
+            <h1>CRDT prepares you financially for your life after relocation.</h1>
+            <p>For example, we help you build a credit score before you move so you can easily rent an apartment.</p>
+        </div>
+
+        <div class="cta-section">
+            <h2>Join us</h2>
+            
+            <form id="waitlistForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        placeholder="Enter your full name" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email address" 
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="submit-btn">Join the Waitlist</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                ✓ Thank you for joining! We'll be in touch soon.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3moF_Zvu-34FlHLHGzKYdYJsVhNU2V-vH8EPzUA5A4JqlIaiPl8So1sSpkZaEAnqp/exec';
+
+        document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fullName: fullName,
+                        email: email
+                    })
+                });
+                
+                // Show success message
+                document.getElementById('waitlistForm').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join the Waitlist';
+            }
+        });
+    </script>
+</body>
+</html>
